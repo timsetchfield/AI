@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .presentation-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            padding: 50px;
+            margin-bottom: 30px;
+            display: none;
+        }
+        
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .slide h2 {
+            color: #764ba2;
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+        
+        .slide p, .slide li {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .slide ul {
+            margin-left: 30px;
+        }
+        
+        .slide-image {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .controls {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            color: #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+            
+            .slide h1 {
+                font-size: 2em;
+            }
+            
+            .slide h2 {
+                font-size: 1.5em;
+            }
+            
+            .slide p, .slide li {
+                font-size: 1.1em;
+            }
+            
+            .controls {
+                bottom: 20px;
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">18</span>
+    </div>
+
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>Understanding Artificial Intelligence</h1>
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800" alt="AI Brain" class="slide-image">
+            <p style="text-align: center; font-size: 1.5em; margin-top: 30px;">A Simple Guide to AI</p>
+            <p style="text-align: center; font-size: 1.2em; color: #666;">Learn what AI is, how it works, and how it affects our world</p>
+        </div>
+
+        <!-- Slide 2: Introduction -->
+        <div class="slide">
+            <h2>Introduction</h2>
+            <img src="https://i.ibb.co/Gvc3YSY1/IMG-1531.jpg" alt="Tim - Presenter" class="slide-image">
+            <p><strong>My name is Tim</strong></p>
+            <p>🇬🇧 I am from the United Kingdom</p>
+            <p>🧪 I started my career as a chemist</p>
+            <p>💻 Now I work in IT (Information Technology)</p>
+            <p>This journey gives me a special view of how technology changes our work and lives.</p>
+        </div>
+
+        <!-- Slide 3: What is AI -->
+        <div class="slide">
+            <h2>What is AI?</h2>
+            <img src="https://images.unsplash.com/photo-1655635949384-f737c5133dfe?w=800" alt="Robot thinking" class="slide-image">
+            <p><strong>AI = Artificial Intelligence</strong></p>
+            <p>AI means computers that can do tasks that usually need human thinking:</p>
+            <ul>
+                <li>Learning from experience</li>
+                <li>Understanding language</li>
+                <li>Recognizing patterns</li>
+                <li>Making decisions</li>
+                <li>Solving problems</li>
+            </ul>
+        </div>
+
+        <!-- Slide 4: AI is not human -->
+        <div class="slide">
+            <h2>Important: AI is NOT Human</h2>
+            <img src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?w=800" alt="Robot and human" class="slide-image">
+            <p>AI does NOT have:</p>
+            <ul>
+                <li>❌ Real understanding (like humans)</li>
+                <li>❌ Feelings or emotions</li>
+                <li>❌ Consciousness (awareness)</li>
+                <li>❌ True creativity</li>
+            </ul>
+            <p>AI finds patterns in data and uses them to give answers.</p>
+        </div>
+
+        <!-- Slide 5: History - Early Days -->
+        <div class="slide">
+            <h2>History of AI - The Beginning</h2>
+            <img src="https://images.unsplash.com/photo-1529101091764-c3526daf38fe?w=800" alt="Old computer" class="slide-image">
+            <p><strong>1950:</strong> Alan Turing asked "Can machines think?"</p>
+            <p><strong>1956:</strong> The term "Artificial Intelligence" was created at a conference in Dartmouth, USA</p>
+            <p><strong>1956:</strong> First AI program created - it could prove math theorems</p>
+            <p>Early researchers thought machines would be as smart as humans in 20 years. They were wrong - it was much harder!</p>
+        </div>
+
+        <!-- Slide 6: Chess Computers -->
+        <div class="slide">
+            <h2>Chess-Playing Computers</h2>
+            <img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800" alt="Chess game" class="slide-image">
+            <div class="stat-box">1997: IBM's Deep Blue beat world champion Garry Kasparov</div>
+            <p><strong>1951:</strong> First chess-playing computer programs (played badly)</p>
+            <p><strong>1968:</strong> A computer beat a human in a tournament for the first time</p>
+            <p><strong>1997:</strong> Deep Blue won against the world's best player!</p>
+            <p>This showed computers could be better than humans at some thinking tasks.</p>
+        </div>
+
+        <!-- Slide 7: Types of AI -->
+        <div class="slide">
+            <h2>Types of AI Today</h2>
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800" alt="Different types of AI" class="slide-image">
+            <p><strong>1. Narrow AI (Weak AI)</strong> - Does ONE job very well</p>
+            <p>Examples: Face recognition, Siri/Alexa, Netflix recommendations</p>
+            <p><strong>2. Machine Learning</strong> - Learns from data</p>
+            <p>The computer finds patterns without being told exactly what to do</p>
+            <p><strong>3. Deep Learning</strong> - Multiple layers of learning</p>
+            <p>Very good at understanding images, speech, and language</p>
+        </div>
+
+        <!-- Slide 8: More Types -->
+        <div class="slide">
+            <h2>More Types of AI</h2>
+            <img src="https://images.unsplash.com/photo-1686191128892-8f1b4a766011?w=800" alt="AI creating art" class="slide-image">
+            <p><strong>4. Generative AI</strong> - Creates new things</p>
+            <p>Can write text, create images, make music, write code</p>
+            <p>Examples: ChatGPT, Claude, DALL-E, Midjourney</p>
+            <p><strong>5. Computer Vision</strong> - Understands pictures and videos</p>
+            <p>Used in: Medical scans, self-driving cars, factory quality checks</p>
+        </div>
+
+        <!-- Slide 9: Agentic AI -->
+        <div class="slide">
+            <h2>What is Agentic AI?</h2>
+            <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800" alt="Autonomous robot" class="slide-image">
+            <p><strong>Agentic AI = AI that can work by itself to reach a goal</strong></p>
+            <p>Regular AI: You ask a question → It gives an answer</p>
+            <p>Agentic AI: You give a goal → It makes a plan → It takes many steps → It reaches the goal</p>
+            <p><strong>Example:</strong> You say "Research electric cars and write a report." The AI will search information, read websites, organize data, and write the report - all by itself!</p>
+        </div>
+
+        <!-- Slide 10: What AI Can Do -->
+        <div class="slide">
+            <h2>What AI CAN Do</h2>
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800" alt="AI capabilities" class="slide-image">
+            <ul>
+                <li>✅ Find patterns in huge amounts of data</li>
+                <li>✅ Translate languages</li>
+                <li>✅ Recognize faces and objects in photos</li>
+                <li>✅ Write text, create art, make music</li>
+                <li>✅ Play games better than humans</li>
+                <li>✅ Help doctors find diseases in medical scans</li>
+                <li>✅ Drive cars</li>
+                <li>✅ Do repetitive tasks perfectly every time</li>
+            </ul>
+        </div>
+
+        <!-- Slide 11: What AI Cannot Do -->
+        <div class="slide">
+            <h2>What AI CANNOT Do</h2>
+            <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800" alt="Limitations" class="slide-image">
+            <ul>
+                <li>❌ Truly understand what things mean</li>
+                <li>❌ Use common sense like humans</li>
+                <li>❌ Have real emotions or feelings</li>
+                <li>❌ Create completely new ideas (only mix old ideas)</li>
+                <li>❌ Explain WHY it gave an answer</li>
+                <li>❌ Use knowledge from one area in a different area</li>
+                <li>❌ Set its own goals based on values</li>
+            </ul>
+        </div>
+
+        <!-- Slide 12: Examples of Use -->
+        <div class="slide">
+            <h2>How People Use AI</h2>
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800" alt="People using AI" class="slide-image">
+            <p><strong>💡 Discussing Ideas:</strong> AI helps brainstorm and explore different viewpoints</p>
+            <p><strong>📚 Research:</strong> AI reads thousands of articles and summarizes the key points</p>
+            <p><strong>💻 Coding:</strong> AI writes code, finds bugs, and explains how programs work</p>
+            <p><strong>✍️ Writing:</strong> AI helps write emails, reports, stories, and marketing content</p>
+        </div>
+
+        <!-- Slide 13: Problem 1 - Errors -->
+        <div class="slide">
+            <h2>Problem 1: AI Makes Mistakes</h2>
+            <img src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=800" alt="Error" class="slide-image">
+            <p><strong>AI is NOT perfect!</strong></p>
+            <p>🔴 <strong>Hallucinations:</strong> AI invents fake facts that sound real</p>
+            <p>Example: AI might create fake research papers or make up false information about people</p>
+            <p>🔴 <strong>Different answers:</strong> Ask the same question twice, get different answers</p>
+            <p>🔴 <strong>Needs many tries:</strong> First answer is often wrong. You need to ask again and again.</p>
+            <p><strong>Always check important information!</strong></p>
+        </div>
+
+        <!-- Slide 14: Problem 2 - Bias -->
+        <div class="slide">
+            <h2>Problem 2: Discrimination and Bias</h2>
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800" alt="Diversity" class="slide-image">
+            <p><strong>AI learns from human data. If humans are biased, AI becomes biased too.</strong></p>
+            <p>🔴 <strong>Hiring:</strong> AI might prefer men over women for technical jobs</p>
+            <p>🔴 <strong>Face recognition:</strong> Works worse for people with dark skin</p>
+            <p>🔴 <strong>Criminal justice:</strong> Sends police to neighborhoods that are already over-policed</p>
+            <p>These problems hurt people from minority groups and make inequality worse.</p>
+        </div>
+
+        <!-- Slide 15: Social Impact - Jobs -->
+        <div class="slide">
+            <h2>Social Impact: Jobs at Risk</h2>
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800" alt="Jobs" class="slide-image">
+            <p><strong>AI will replace many jobs:</strong></p>
+            <ul>
+                <li>Customer service workers (replaced by chatbots)</li>
+                <li>Truck drivers (self-driving trucks)</li>
+                <li>Translators</li>
+                <li>Data entry workers</li>
+                <li>Graphic designers and artists</li>
+                <li>Some medical specialists (reading X-rays)</li>
+                <li>Accountants and bookkeepers</li>
+            </ul>
+            <p>New jobs will be created, but people need to learn new skills.</p>
+        </div>
+
+        <!-- Slide 16: Cognitive Impact -->
+        <div class="slide">
+            <h2>Social Impact: Thinking Skills</h2>
+            <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800" alt="Brain thinking" class="slide-image">
+            <p><strong>Will people stop thinking for themselves?</strong></p>
+            <p>🧠 Students using AI to write essays don't learn to write well</p>
+            <p>🧠 People using GPS can't find their way without it</p>
+            <p>🧠 If AI does our thinking, we don't practice our brain skills</p>
+            <p>🧠 People might believe AI answers without checking if they're true</p>
+            <p><strong>We must use AI as a tool, not a replacement for thinking!</strong></p>
+        </div>
+
+        <!-- Slide 17: Environmental Impact -->
+        <div class="slide">
+            <h2>Environmental Impact</h2>
+            <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800" alt="Environment" class="slide-image">
+            <div class="stat-box">Training GPT-3 created 552 tons of CO₂ = 120 cars driven for one year</div>
+            <div class="stat-box">By 2030: AI could use 3.5% of all electricity in the world</div>
+            <p>⚡ AI uses huge amounts of electricity</p>
+            <p>💧 Data centers use millions of gallons of water for cooling</p>
+            <p><strong>What companies are doing:</strong> Using renewable energy, making AI more efficient, building better data centers</p>
+        </div>
+
+        <!-- Slide 18: The Future -->
+        <div class="slide">
+            <h2>The Future and P(Doom)</h2>
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800" alt="Future" class="slide-image">
+            <p><strong>P(Doom) = Probability of Doom</strong></p>
+            <p>How likely is it that AI will harm or destroy humanity?</p>
+            <p>😊 <strong>Optimistic view:</strong> AI cures diseases, solves climate change, creates abundance for everyone</p>
+            <p>😰 <strong>Pessimistic view:</strong> Super-intelligent AI becomes uncontrollable and dangerous to humans</p>
+            <p>Experts disagree: Some say 1% chance of doom, others say 10-50%</p>
+            <p><strong>The truth:</strong> Our choices today will decide the future. We must develop AI carefully and safely.</p>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" id="prev-btn">← Previous</button>
+        <button class="btn" id="next-btn">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function updateButtons() {
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function showSlide(n) {
+            if (n < 0 || n >= totalSlides) return;
+            
+            slides[currentSlide].classList.remove('active');
+            currentSlide = n;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            updateButtons();
+            
+            // Scroll to top when changing slides
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+        
+        nextBtn.addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') showSlide(currentSlide + 1);
+            if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+        });
+        
+        // Initialize
+        updateButtons();
+    </script>
+</body>
+</html>
